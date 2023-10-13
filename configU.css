@@ -190,8 +190,11 @@ body{
 
 /*RECUADRO MORADO PARA LA INFO DEL CENTRO*/
 .Principal{
-    width: 55%;
-    padding-left: 40vh;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding-top: 2.5vh;
     padding-bottom: 7vh;
 }
