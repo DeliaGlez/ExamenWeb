@@ -1,0 +1,578 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.FondoPr{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(35, 34, 52);
+}
+
+.FondoPr label{
+    color: white;
+}
+
+/*ESTILOS LOGO Y TITULO ===================================*/
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+}
+
+.logo label{
+    font-weight: bold;
+}
+
+.logo img{
+    max-width: 8vh;
+    height: auto;
+}
+
+/* ESTILOS DEL BUSCADOR BARRA SUPERIOR ====================*/
+
+.Buscador{
+    background-color: #312F48;
+    display: flex;
+    align-items: center;
+}
+
+.Buscador{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    gap: 3vh;
+}
+
+.Buscador label{
+    color: white;
+}
+
+/*ESTILOS DE LA BARRA DE BUSQUEDA ======================*/
+
+.search{
+    display: flex;
+    align-items: center;
+}
+
+.buscar{
+    height: auto;
+}
+
+/*ESTILO BOTON CATEGORIAS ================================*/
+
+.categorias label{
+    color: rgb(75, 74, 74);
+}
+
+.categorias{
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: 4.7vh;
+    background-color: #D9D9D9;
+    border: 2px;
+}
+
+.categorias img{
+    padding: 0.5vh;
+}
+
+/*ESTILOS INPUT Y LUPA ===================================*/
+.buscar input{
+    width: 45vh;
+    height: 4.5vh;
+}
+
+#input1::placeholder{
+    padding-left: 1vh;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.icono{
+    max-width: 10vh;
+    height: auto;
+}
+
+.lupa{
+    max-width: 5vh;
+    height: auto;
+    cursor: pointer;
+}
+
+.flecha{
+    max-width: 10px;
+    height: auto;
+}
+
+/*ESTILOS USUARIO E INGRESAR ============================*/
+
+.usuario{
+    display: flex;
+    align-items: center;
+}
+
+.ingresar{
+    display: flex;
+    align-items: center;
+    height: 2.5vh;
+    width: auto;
+    border: 2px solid;
+    border-color: #2A2D8C;
+    padding: 2px;
+    margin-left: 1vh;
+    box-shadow: 5px 5px 10px #2A2D8C, -5px -5px 10px #2A2D8C;
+}
+
+.user{
+    max-width: 5vh;
+    height: auto;
+}
+
+/*ESTILOS COMPRA CARRITO ================================*/
+
+.compra{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.compra img{
+    max-width: 5vh;
+    height: auto;
+}
+
+/*ESTILOS BARRA INFERIOR DEL BUSCADOR =================*/
+
+.tipos{
+    background-color: #8416C5;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    gap: 3vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+
+.tipos label{
+    color: white;
+    padding-right: 4.5vh;
+}
+
+.tipos .lomas{
+    padding-right: 1vh;
+}
+
+.tipos img{
+    max-width: 1.3vh;
+    height: auto;
+    padding-right: 2vh;
+}
+
+/*ESTILOS CATEGORIAS PRODUCTOS ==========================*/
+
+.productos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/*ESTILOS ANUNCIO ======================================*/
+
+.anuncio{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.anuncio img{
+    max-width: 85vh;
+    height: auto;
+}
+
+/*ESTILOS PARTE 1 PRINCIPAL =============================*/
+
+.parte1{
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    justify-content: center;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.data{
+    display: flex;
+    justify-content: center;
+}
+
+/*ESTILOS PARTE 2 PRINCIPAL ============================*/
+
+.parte2{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+/*ESTILOS ARMA TU PC ====================================*/
+
+.pc{
+    margin-right: 6vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+}
+
+.bomba{
+    padding: 2vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #312F48;
+}
+
+.bomba .precio{
+    text-align: left;
+    justify-content: space-between;
+    display: flex;
+}
+
+.bomba img{
+    align-self: center;
+    max-width: 25vh;
+    height: auto;
+}
+
+/*ESTILOS VERANO ========================================*/
+
+.verano{
+    margin-right: 6.5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+
+}
+
+.ropa{
+    padding: 2.5vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #312F48;
+}
+
+.ropa .precio{
+    text-align: left;
+    justify-content: space-between;
+    display: flex;
+}
+
+.ropa img{
+    align-self: center;
+    max-width: 24vh;
+    height: auto;
+}
+
+/*ESTILOS MASCOTAS =======================================*/
+
+.mascota{
+    margin-right: 6.5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+}
+
+.perro{
+    padding: 2.5vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #312F48;
+}
+
+.perro .precio{
+    text-align: left;
+    justify-content: space-between;
+    display: flex;
+}
+
+.perro img{
+    align-self: center;
+    max-width: 24vh;
+    height: auto;
+}
+
+/*ESTILOS MEXICO ========================================*/
+
+.mex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+}
+
+.tequila{
+    padding: 2.5vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #312F48;
+}
+
+.tequila .precio{
+    justify-content: space-between;
+    text-align: left;
+    display: flex;
+}
+
+.tequila img{
+    align-self: center;
+    max-width: 20vh;
+    height: auto;
+}
+
+/*ESTILOS VOLVER A COMPRAR ===============================*/
+
+.volver{
+    margin: 1.5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.volver label{
+    text-align: center;
+}
+
+.visto1{
+    padding: 2.5vh;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    background-color: #312F48;
+}
+
+.visto1 label{
+    flex-direction: column;
+    text-align: center;
+    border-bottom: #D9D9D9;
+}
+
+.visto1 img{
+    align-items: center;
+    max-width: 20vh;
+    height: auto;
+}
+
+.visto1 .imagen{
+    display: flex;
+    flex-direction: column;
+    max-width: 25vh;
+    height: auto;
+}
+
+.texto1 label{
+    border-bottom: 2px solid white;
+}
+
+/*ESTILOS CELULARES =======================================*/
+
+.celu{
+    margin: 1.5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.celular1{
+    padding: 2.5vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #312F48;
+}
+
+.celular1 .precio{
+    text-align: left;
+    justify-content: space-between;
+    display: flex;
+}
+
+.celular1 img{
+    align-self: center;
+    max-width: 15vh;
+    height: auto;
+}
+
+/*ESTILOS CONTINUA DONDE LO DEJASTE =======================*/
+
+.continua{
+    margin: 1.5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.continua1{
+    padding: 2.5vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #312F48;
+}
+
+.continua1 .precio{
+    text-align: left;
+    justify-content: space-between;
+    display: flex;
+}
+
+.continua1 img{
+    align-self: center;
+    max-width: 20vh;
+    height: auto;
+}
+
+/*---------------------------------------------------------*/
+@media only screen and (max-width: 768px) {
+    .FondoPr {
+        overflow-x: hidden;
+        padding: 20px;
+    }
+
+    .logo {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo label {
+        margin-top: 10px;
+    }
+
+    .logo img {
+        max-width: 50px;
+    }
+    
+    /*ESTILOS BARRA BUSQUEDA ==============================*/
+
+    .Buscador {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .categorias {
+        width: 30%;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .categorias img{
+        max-width: 10px;
+        height: auto;
+    }
+
+    .buscar input {
+        width: 100%;
+        height: 4.2vh;
+    }
+
+    .search {
+        font-size: 14px; 
+    }
+
+    .buscar input {
+        width: 94%;
+    }
+
+    #input1::placeholder{
+        padding-left: 0.5vh;
+        font-size: small;
+        font-weight: bold;
+    }
+
+    .lupa {
+        max-width: 30px;
+        height: auto;
+    }
+
+    /*ESTILOS USARIO E INGRESAR =============================*/
+
+    .usuario {
+        margin-top: 20px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .ingresar {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    /*Carrito de compras ===================================*/
+
+    .compra img{
+        padding-left: 6px;
+    }
+
+    /*BARRA DE CATEGORIAS ===================================*/
+
+    .tipos {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .tipos img {
+        display: none;
+    }
+
+    .productos {
+        flex-direction: column;
+    }
+
+    .anuncio img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .visto1 {
+        flex-wrap: wrap;
+    }
+
+    .visto1 .imagen{
+        flex-direction: row;
+        max-width: 23vh;
+    }
+
+    .visto1 > img:last-child {
+        display: none;
+    }
+
+    .parte1, .parte2 {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .pc, .verano, .mascota, .mex, .volver, .celu, .continua {
+        margin-right: 0;
+    }
+
+    .bomba img,
+    .ropa img,
+    .perro img,
+    .tequila img,
+    .visto1 img,
+    .celular1 img,
+    .continua1 img {
+        max-width: 100%;
+    }
+}
+
