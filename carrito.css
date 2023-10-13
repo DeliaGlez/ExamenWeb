@@ -119,6 +119,17 @@ body{
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
 }
 
+.boton-personalizado2 {
+    padding: 8px 40px; /* Ajusta el padding según tus necesidades */
+    border: none;
+    border-radius: 50px;
+    background-color: #FF7F11; /* Azul marino */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 255, 0.2); /* Sombra azul claro hacia abajo */
+}
+
 .contenedorPro{
     display: flex;
     width: 85%;
@@ -238,7 +249,19 @@ input[type='radio']:checked:after {
 @media only screen and (max-width: 768px) {
      /*ESTILOS BARRA BUSQUEDA ==============================*/
 
-     .Buscador {
+     .contenedorPro{
+        display:block;
+        width: 80%;
+        padding-left: 4%;
+    }
+
+    .txtos .first{
+        font-weight: 1;
+        margin-left: 3vh;
+        margin-right: 12%;
+    }
+
+    .Buscador {
         flex-direction: column;
         gap: 20px;
         max-width: 100%;
@@ -343,8 +366,11 @@ input[type='radio']:checked:after {
       .logo, .search, .usuario, .compra {
         flex: 0 1 auto; 
         margin: 10px;
-      }
+    }
+
 }
+
+
 /* menu superior y nav*/
 
 /*ESTILOS LOGO Y TITULO ===================================*/
