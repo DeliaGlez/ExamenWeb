@@ -1,0 +1,524 @@
+*{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body{
+    background-color: #232234;
+    color: white;
+    margin: 0px;
+}
+
+main{
+    display: flex;
+}
+.contenedor-cat{
+    width: 200px;
+}
+.categoria{
+    /* background-color: rebeccapurple; */
+    padding-left: 20px;
+    padding-right: 20px;
+    border-right: solid 5px #312F48 ;
+    margin-right: 25px;
+}
+.categoria ul{
+    padding-left: 10px;
+    margin-top: 5px;
+}
+.categoria li{
+    list-style: none;
+    color: white;
+}
+.categoria a{
+    text-decoration: none;
+    color: white;
+}
+.cat1{
+    border-bottom: solid 5px #312F48 ;
+
+}
+.fuente1{
+    font-weight: bold;
+    font-size: 25px;
+}
+.fuente2{
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 0px;
+}
+.precio input{
+    background-color: #312F48;
+    color: white;
+    width: 57px;
+}
+.contenido{
+    /* background-color:black; */
+    width: 100%;
+    margin-right: 40px;
+}
+
+.resultados{
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.resultados p{
+    margin: 0px;
+}
+
+.navegacion{
+    justify-content: space-between;
+    display: flex;
+}
+
+.ir-pag{
+    display: flex; 
+    height: 40px; 
+    align-items: center;
+}
+.ir-pag button{
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 40px;
+
+}
+.ir-pag input{
+    margin-left: 20px;
+    width: 50px;
+    
+}
+.ir-pag p{
+    margin: 0px;
+    text-align: center;
+
+}
+#uno{
+    background-color: #FF7F11;
+    color: white;
+    height: 50px;
+
+}
+.back-style{
+    background-color: #312F48;
+    color: white;
+    height: 50px;
+    
+}
+.back-style input {
+    
+ }
+ #filtro{
+    background-color: #FF7F11;
+    color: white;
+    border-radius: 20px;
+    font-size: 20px;
+ }
+ .productos{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 300px));
+    grid-template-rows: repeat(auto-fill, minmax(400px, 400px));
+    grid-gap: 50px;
+    justify-items: start;
+    margin-left: 30px; 
+    margin-top: 40px;
+ }
+.audifono{
+    background-color: #312F48; 
+    padding-left: 20px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 5px;
+}
+.audifono p{
+    margin: 0px;
+}
+.btn-p{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+.btn-p button{
+    background-color: #232234;
+    color: white;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    
+}
+
+.btn-buy button{
+    background-color: #FF7F11;
+    color: white;
+    border-radius: 20px;
+    width: 90%;
+    font-size: 25px;
+    
+    
+}
+.p-rating{
+    display:flex ;
+    align-items: center;
+}
+ #desc{
+    background-color: #6624B7;
+    border-radius: 20px;
+    width: 90px;
+    text-align: center;
+ }
+#t-sub{
+    text-decoration-line: line-through;
+    color: gray;
+    font-size: 15px;
+}
+.imgAud, .btn-buy{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.formulario{
+    margin: 0px;
+}
+@media only screen and (max-width: 768px) {
+    main{
+        display: block;
+    }
+    .contenedor-cat{
+        width: 100%;
+        margin-bottom: 40px;
+    }
+    .navegacion, .resultados{
+        display: inline-block;
+        
+        margin-bottom: 20px;
+    }
+    .resultados div, .ir-pag{
+        margin-top: 10px;
+    }
+    .productos{
+        margin-left: 0px;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    .cont-result-nav{
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    /*ESTILOS BARRA BUSQUEDA ==============================*/
+
+    .Buscador {
+        flex-direction: column;
+        gap: 20px;
+        max-width: 100%;
+    }
+
+    .categorias {
+        width: 30%;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .categorias img{
+        max-width: 10px;
+        height: auto;
+    }
+
+    .buscar input {
+        width: 100%;
+        height: 4.2vh;
+    }
+
+    .search {
+        font-size: 14px;
+    }
+
+    .buscar input {
+        width: 94%;
+    }
+    #input1{
+        width: 200px;
+    }
+    #input1::placeholder{
+        padding-left: 0.5vh;
+        font-size: small;
+        font-weight: bold;
+    }
+
+    .lupa {
+        max-width: 30px;
+        height: auto;
+    }
+
+    /*ESTILOS USARIO E INGRESAR =============================*/
+
+    .usuario {
+        margin-top: 20px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .ingresar {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    /*Carrito de compras ===================================*/
+
+    .compra img{
+        padding-left: 6px;
+    }
+
+    /*BARRA DE CATEGORIAS ===================================*/
+
+    .tipos {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap; /* Permite que los elementos se envuelvan a la siguiente fila si no caben en el ancho del cuerpo */
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .tipos >div>label, a{
+        padding :0px;
+    }
+
+    .tipos img {
+        display: none;
+    }
+    .logo {
+        order: 1;
+      }
+      
+      .search {
+        order: 4;
+      }
+      
+      .usuario {
+        order: 2;
+      }
+      
+      .compra {
+        order: 3;
+      }
+      .Buscador {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap; 
+        max-width: 100%; 
+        margin-bottom: 20px;
+      }
+      
+      .logo, .search, .usuario, .compra {
+        flex: 0 1 auto; 
+        margin: 10px; 
+      }
+}
+
+/* menu superior y nav*/
+
+/*ESTILOS LOGO Y TITULO ===================================*/
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+}
+
+.logo label{
+    font-weight: bold;
+}
+
+.logo img{
+    max-width: 8vh;
+    height: auto;
+}
+
+/* ESTILOS DEL BUSCADOR BARRA SUPERIOR ====================*/
+
+.Buscador{
+    background-color: #312F48;
+    display: flex;
+    align-items: center;
+}
+
+.Buscador{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    gap: 3vh;
+}
+
+.Buscador label{
+    color: white;
+}
+
+/*ESTILOS DE LA BARRA DE BUSQUEDA ======================*/
+
+.search{
+    display: flex;
+    align-items: center;
+}
+
+.buscar{
+    height: auto;
+}
+
+/*ESTILO BOTON CATEGORIAS ================================*/
+
+.categorias label{
+    color: rgb(75, 74, 74);
+}
+
+.categorias{
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: 4.7vh;
+    background-color: #D9D9D9;
+    border: 2px;
+}
+
+.categorias img{
+    padding: 0.5vh;
+}
+
+/*ESTILOS INPUT Y LUPA ===================================*/
+.buscar input{
+    width: 45vh;
+    height: 4.5vh;
+}
+
+#input1::placeholder{
+    padding-left: 1vh;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.icono{
+    max-width: 10vh;
+    height: auto;
+}
+
+.lupa{
+    max-width: 5vh;
+    height: auto;
+    cursor: pointer;
+}
+
+.flecha{
+    max-width: 10px;
+    height: auto;
+}
+
+/*ESTILOS USUARIO E INGRESAR ============================*/
+
+.usuario{
+    display: flex;
+    align-items: center;
+}
+
+.ingresar{
+    display: flex;
+    align-items: center;
+    height: 2.5vh;
+    width: auto;
+    border: 2px solid;
+    border-color: #2A2D8C;
+    padding: 2px;
+    margin-left: 1vh;
+    box-shadow: 5px 5px 10px #2A2D8C, -5px -5px 10px #2A2D8C;
+}
+
+.user{
+    max-width: 5vh;
+    height: auto;
+}
+
+/* Estilos del menú desplegable */
+.hidden-checkbox {
+    display: none;
+}
+
+.usuario {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.bienvenidoTexto {
+    color: white;
+    margin-right: 5px; /* Ajusta el margen según tu preferencia */
+}
+
+.nombreUsuario {
+    color: white;
+    margin-right: 10px; /* Ajusta el margen según tu preferencia */
+}
+
+.desplegable {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #312F48;
+    padding: 10px;
+    z-index: 1;
+    display: none;
+}
+
+.usuario:hover .desplegable {
+    display: block;
+}
+
+.desplegable a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.desplegable a:hover {
+    text-decoration: underline;
+}
+
+/*ESTILOS COMPRA CARRITO ================================*/
+
+.compra{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.compra img{
+    max-width: 5vh;
+    height: auto;
+}
+
+/*ESTILOS BARRA INFERIOR DEL BUSCADOR =================*/
+
+.tipos{
+    background-color: #8416C5;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    gap: 3vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+
+.tipos label{
+    color: white;
+    padding-right: 4.5vh;
+}
+
+.tipos .lomas{
+    padding-right: 1vh;
+}
+
+.tipos img{
+    max-width: 1.3vh;
+    height: auto;
+    padding-right: 2vh;
+}
