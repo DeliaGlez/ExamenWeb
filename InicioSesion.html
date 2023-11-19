@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesion</title>
     <link rel="stylesheet" href="./inicioSesionStyle.css">
+    <script src="./sentencias.js"></script>
 </head>
 <body>
     <div class="FondoPr">
@@ -33,9 +34,7 @@
                     <label class="olvide">Olvide mi contraseña</label>
                 </div>
                 <div class="boton">
-                    <a href="./InicioSesionIniciada.html">
-                        <input type="submit" value="Ingresar">
-                    </a>
+                    <input type="submit" value="Ingresar">
                 </div>
                 <div class="label3">
                     <label>Aun no tienes cuenta?</label> 
@@ -48,5 +47,11 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const botonIngresar = document.querySelector('.boton input[type="submit"]');
+            botonIngresar.addEventListener('click', iniciarSesion);
+        });
+    </script>
 </body>
 </html>

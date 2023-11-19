@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PaginaInicio</title>
     <link rel="stylesheet" href="./InicioSeIn.css">
+    <script src="./sentencias.js"></script>
 </head>
 <body>
     <div class="FondoPr">
@@ -31,7 +32,7 @@
             <div class="usuario">
                 <img class="user" src="./imagenes/user.png">
                 <label class="bienvenidoTexto">Bienvenido,</label>
-                <label class="nombreUsuario" for="menuCheckbox">Manuel P.</label>
+                <label id="nombreUsuario" class="nombreUsuario" for="menuCheckbox">Name</label>
                 <input type="checkbox" id="menuCheckbox" class="hidden-checkbox">
                 <div class="desplegable">
                     <div class="menuOpciones">
@@ -152,5 +153,15 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Obtener el nombre de usuario del Local Storage
+            const nombreUsuario = localStorage.getItem('nombreUsuario');
+
+            // Asignar el nombre de usuario al label
+            const labelNombreUsuario = document.getElementById('nombreUsuario');
+            labelNombreUsuario.textContent = nombreUsuario;
+        });
+    </script>
 </body>
 </html>
