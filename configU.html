@@ -35,7 +35,7 @@
                 <div class="usuario">
                     <img class="user" src="./imagenes/user.png">
                     <label class="bienvenidoTexto">Bienvenido,</label>
-                    <label id="nombreUsuario" class="nombreUsuario" for="menuCheckbox">Manuel P.</label>
+                    <label id="nombreUsuario" class="nombreUsuario" for="menuCheckbox">name</label>
                     <input type="checkbox" id="menuCheckbox" class="hidden-checkbox">
                     <div class="desplegable">
                         <div class="menuOpciones">
@@ -90,39 +90,39 @@
                 <div class="contentinputs">
                     <div>
                         <h3>Nombre</h3>
-                        <input type="text" class="input-personalizado" placeholder=" MANUEL EDUARDO">
+                        <input id="nombre" type="text" class="input-personalizado">
                     </div>
                     <div>
                         <h3>Apellidos</h3>
-                        <input type="text" class="input-personalizado" placeholder=" PALAFOX GARCÍA">
+                        <input id="apellido" type="text" class="input-personalizado">
                     </div>
                     <div>
                         <h3>Correo electrónico</h3>
-                        <input type="text" class="input-personalizado" placeholder=" mapa21@alu.uabcs.mx">
+                        <input id="correo" type="text" class="input-personalizado">
                     </div>
                     <div>
                         <h3>Num.Teléfono</h3>
-                        <input type="text" class="input-personalizado" placeholder=" +52 612 125 7342">
+                        <input id="telefono" type="text" class="input-personalizado">
                     </div>
                     <div>
                         <h3>Contraseña actual</h3>
-                        <input type="text" class="input-personalizado" placeholder=" * * * * * * * * * * * *">
+                        <input id="contraseña" type="text" class="input-personalizado">
                     </div>
                     <div>
                         <h3>Contraseña nueva</h3>
-                        <input type="text" class="input-personalizado" placeholder=" palafox12345">
+                        <input id="NuevaContra" type="text" class="input-personalizado">
                     </div>
                 </div>
                 
                 <h3 class="title2">Dirección de envío</h3>
                 
                 <div class="txtarea">
-                    <textarea class="textareamod" placeholder=" Avenida guacamayas, col chulavista, calle 13 mza 7 lte 8 entre calle geografia y calle pecero"></textarea>
+                    <textarea id="direccion" class="textareamod" placeholder=""></textarea>
                 </div>
 
                 <div class="botones">
                     <a href="InicioSesionIniciada.html"><button class="boton-personalizado">Regresar</button></a>
-                    <a href="InicioSesionIniciada.html"><button class="boton-personalizado2">Actualizar</button></a>
+                    <button id="botonActualizar" class="boton-personalizado2">Actualizar</button>
                 </div>  
                 
             </div>
@@ -132,14 +132,80 @@
 
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Obtener el nombre de usuario del Local Storage
-            const nombreUsuario = localStorage.getItem('nombreUsuario');
+    document.addEventListener('DOMContentLoaded', function () {
+    // Obtener el nombre de usuario del Local Storage
+    const nombreUsuario = localStorage.getItem('nombreUsuario');
+    const usuario = obtenerUsuarioPorNombre(nombreUsuario);
 
-            // Asignar el nombre de usuario al label
-            const labelNombreUsuario = document.getElementById('nombreUsuario');
-            labelNombreUsuario.textContent = nombreUsuario;
-        });
+    // Asignar el nombre de usuario al label
+    const labelNombreUsuario = document.getElementById('nombreUsuario');
+    labelNombreUsuario.textContent = usuario.nombre;
+
+    // Llenar los campos con la información del usuario
+    asignarValor('nombre', usuario.nombre);
+    asignarValor('apellido', usuario.apellido);
+    asignarValor('correo', usuario.correo);
+    asignarValor('telefono', usuario.telefono);
+    asignarValor('direccion', usuario.direccion);
+    asignarValor('contraseña', usuario.contra); // Mostrar contraseña actual es opcional
+    asignarValor('NuevaContra', ''); // Mostrar nueva contraseña es opcional
+
+    // Agregar evento al botón de "Actualizar"
+    const botonActualizar = document.getElementById('botonActualizar');
+    botonActualizar.addEventListener('click', actualizarInformacion);
+
+    function obtenerUsuarioPorNombre(nombreUsuario) {
+        const usuariosRegistrados = JSON.parse(localStorage.getItem('usuarios')) || [];
+        return usuariosRegistrados.find(usuario => usuario && usuario.nombre === nombreUsuario);
+    }
+
+    function asignarValor(id, valor) {
+        const elemento = document.getElementById(id);
+        if (elemento) {
+            elemento.value = valor;
+        } else {
+            console.error(`Elemento con ID '${id}' no encontrado.`);
+        }
+    }
+
+    function actualizarInformacion() {
+        // Obtener el índice del usuario en el array del Local Storage
+        const correoNuevo = document.getElementById('correo').value;
+        const usuariosRegistrados = JSON.parse(localStorage.getItem('usuarios')) || [];
+        
+        // Verificar si hay otro usuario con el mismo correo
+        const usuarioExistente = usuariosRegistrados.find(usuario => usuario.correo === correoNuevo);
+        if (usuarioExistente && usuarioExistente.nombre !== nombreUsuario) {
+            alert('Ya hay un usuario registrado con este correo electrónico.');
+            return;
+        }
+
+        const indexUsuario = usuariosRegistrados.findIndex(usuario => usuario.nombre === nombreUsuario);
+
+        // Verificar si se encontró el usuario
+        if (indexUsuario !== -1) {
+            // Actualizar la información del usuario con los nuevos valores de los campos
+            usuariosRegistrados[indexUsuario].nombre = document.getElementById('nombre').value;
+            usuariosRegistrados[indexUsuario].apellido = document.getElementById('apellido').value;
+            usuariosRegistrados[indexUsuario].correo = correoNuevo;
+            usuariosRegistrados[indexUsuario].telefono = document.getElementById('telefono').value;
+            usuariosRegistrados[indexUsuario].direccion = document.getElementById('direccion').value;
+            usuariosRegistrados[indexUsuario].contra = document.getElementById('NuevaContra').value;
+            // Puedes manejar las contraseñas según tus necesidades
+
+            // Actualizar la información en el localStorage
+            localStorage.setItem('usuarios', JSON.stringify(usuariosRegistrados));
+
+            // Actualizar el nombre de usuario en el Local Storage
+            localStorage.setItem('nombreUsuario', usuariosRegistrados[indexUsuario].nombre);
+
+            // Redirigir a la página de inicio de sesión iniciada o hacer otras acciones necesarias
+            window.location.href = './InicioSesionIniciada.html';
+        } else {
+            console.error('Usuario no encontrado');
+        }
+    }
+});
     </script>
 </body>
 </html>
