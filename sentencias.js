@@ -41,7 +41,7 @@ function registrarUsuario() {
 
     // Guardar el nombre del usuario actual en el Local Storage
     localStorage.setItem('nombreUsuario', nombre);
-
+    localStorage.setItem('correo',correo);
     localStorage.setItem('usuarios', JSON.stringify(usuariosRegistrados));
 
     window.location.href = './InicioSesion.html';
