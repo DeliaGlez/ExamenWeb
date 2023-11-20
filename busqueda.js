@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
             return {
                 urlImagen: urlImagen,
                 nombre: nombre,
-                precio: precio
+                precio: precio,
+                //cantidad: cantidad
             };
         },
     

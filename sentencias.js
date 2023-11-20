@@ -33,8 +33,8 @@ function registrarUsuario() {
         telefono,
         direccion,
         contra,
-        carrito: []
-        //AGREGAR ARRAY DE HISTORIAL historial: []
+        carrito: [],
+        historial: []
     };
 
     usuariosRegistrados.push(nuevoUsuario);
