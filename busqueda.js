@@ -86,9 +86,54 @@ document.addEventListener('DOMContentLoaded', function () {
         //funcion crear producto
         const skullCandy = producto.crearProducto(urlImagen,nombreProducto,precio);
         //funcion agregar al carrito
-       
       
     
         producto.agregarAlCarrito(usuarioActual, skullCandy);
     })
+
+    //FUNCIONALIDAD AGREGAR CARRITO Y REDIRECCIONAR A PÁGINA DEL CARRITO
+    const btnComprar1 = document.querySelector('#compraCASCOSNEGROS');
+    btnComprar1.addEventListener('click', function () {
+        const urlImagen = "./img/audifonos/audSony.png";
+        const nombreProducto = "Audífonos Inalámbricos Wh-ch720n Color Negro";
+        const precio = 2293.00;
+
+        // Función crear producto
+        const cascosNegros = producto.crearProducto(urlImagen, nombreProducto, precio);
+        // Función agregar al carrito
+        producto.agregarAlCarrito(usuarioActual, cascosNegros);
+
+        // Redirigir a la página del carrito
+        window.location.href = "carrito.html";
+    });
+
+    const btnComprar2 = document.querySelector('#compraREDMI');
+    btnComprar2.addEventListener('click', function () {
+        const urlImagen = "./img/audifonos/audXiaomi.png";
+        const nombreProducto = "Xiaomi 36103 Audífonos Inalámbircos Redmi Buds 3 Lite";
+        const precio = 260.00;
+
+        // Función crear producto
+        const redmi = producto.crearProducto(urlImagen, nombreProducto, precio);
+        // Función agregar al carrito
+        producto.agregarAlCarrito(usuarioActual, redmi);
+
+        // Redirigir a la página del carrito
+        window.location.href = "carrito.html";
+    });
+
+    const btnComprar3 = document.querySelector('#compraSKULLCANDY');
+    btnComprar3.addEventListener('click', function () {
+        const urlImagen = "./img/audifonos/audSkull.png";
+        const nombreProducto = "SKULLCANDY Audífonos Alámbricos Ink d+ Negro IN Ear";
+        const precio = 249.50;
+
+        // Función crear producto
+        const skullCandy = producto.crearProducto(urlImagen, nombreProducto, precio);
+        // Función agregar al carrito
+        producto.agregarAlCarrito(usuarioActual, skullCandy);
+
+        // Redirigir a la página del carrito
+        window.location.href = "carrito.html";
+    });
 });

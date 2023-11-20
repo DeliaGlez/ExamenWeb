@@ -147,18 +147,16 @@
             });
 
             tabla.appendChild(encabezadoTabla);
-            // Aquí dentro del bucle puedes generar las filas de la tabla con los datos de cada compra
             const productosCompra = compra.productos;
 
             productosCompra.forEach(producto => {
                 const filaProducto = document.createElement('tr');
 
-                // Crear celdas para cada propiedad del producto y agregarlas a la fila
                 const propiedadesProducto = ['urlImagen', 'nombre', 'cantidad', 'precio'];
 
                 propiedadesProducto.forEach(propiedad => {
                     const td = document.createElement('td');
-                    // Asignar el valor de la propiedad a la celda
+
                     if (propiedad === 'urlImagen') { // Modificado el nombre de la propiedad
                         const img = document.createElement('img');
                         img.src = producto[propiedad];
@@ -192,9 +190,6 @@
             contenedorProductos.appendChild(divProducto); // Agrega el producto al contenedor de productos
         });
     }
-    
     });
-
-    
 </script>
 </html>
