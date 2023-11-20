@@ -6,6 +6,81 @@
     <link rel="stylesheet" href="historialCompraStyle.css">
 </head>
 <body>
+    <nav>
+        <div class="Buscador">
+            <div class="logo">
+                <a href="./InicioSesionIniciada.html">
+                    <img class="icono" src="./imagenes/icon.png">
+                </a>
+                <a href="./InicioSesionIniciada.html">
+                    <label>FOXSHOP</label>
+                </a>  
+            </div>
+            <div class="search">
+                <div class="categorias">
+                    <label>Categorias</label>
+                    <img class="flecha" src="./imagenes/flecha.png">
+                </div>
+                <div class="buscar">
+                    <input id="input1" type="text" placeholder="Buscar en foxshop.com">
+                </div>
+                <a href="busqueda.html">
+                    <img class="lupa" src="./imagenes/lupa.jpg">
+                </a>
+            </div>
+            <input type="checkbox" class="hidden-checkbox">
+            <div class="usuario">
+                <img class="user" src="./imagenes/user.png">
+                <label class="bienvenidoTexto">Bienvenido,</label>
+                <label id="nombreUsuario" class="nombreUsuario" for="menuCheckbox">Manuel P.</label>
+                <input type="checkbox" id="menuCheckbox" class="hidden-checkbox">
+                <div class="desplegable">
+                    <div class="menuOpciones">
+                        <a href="configU.html">Configuracion</a>
+                        <a href="./InicioSesion.html">Cerrar Sesion</a>
+                    </div>
+                </div>
+            </div>            
+            <div class="compra">
+                <a href="carrito.html">
+                    <img src="./imagenes/carrito.png">
+                    <div class="texto">
+                        <label>Carrito</label>
+                </a>
+                </div>
+            </div>
+        </div>
+        <div class="Barra">
+            <div class="tipos">
+                <div>
+                    <a href="./InicioSesionIniciada.html">
+                        <label>Inicio</label>
+                    </a>
+                </div>
+                <div>
+                    <label class="lomas">Lo mas vendido</label>
+                    <img class="star" src="./imagenes/estrella.png">
+                </div>
+                <div>
+                    <label>Promociones</label>
+                </div>
+                <div>
+                    <label>Lo nuevo</label>
+                </div>
+                <div>
+                    <label>Musica</label>
+                </div>
+                <div>
+                    <label>Electronicos</label>
+                </div>
+                <div>
+                    <a href="./historialCompra.html">
+                        <label>Historial de compra</label>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
     <main>
         <div id="h-cont">
             <div>
@@ -23,4 +98,103 @@
     </main>
     
 </body>
+<script>
+    var usuariosRegistrados = JSON.parse(localStorage.getItem('usuarios')) || [];
+    var usuarioActual = usuariosRegistrados.find(usuario => usuario.correo === localStorage.getItem('correo'));
+    const historialC= usuarioActual.historial;
+   
+    document.addEventListener('DOMContentLoaded', function () {
+    const nombreUsuario = localStorage.getItem('nombreUsuario');
+    // Asignar el nombre de usuario al label
+    const labelNombreUsuario = document.getElementById('nombreUsuario');
+    labelNombreUsuario.textContent = nombreUsuario;
+
+    const historialVacioDiv = document.getElementById('h-vacio');
+    
+
+    if (historialC.length === 0) {
+        historialVacioDiv.style.display = 'flex'; // Mostrar el div de historial vacío
+       
+    } else {
+        historialVacioDiv.style.display = 'none'; // Ocultar el div de historial vacío
+        historialC.forEach(compra => {
+           
+         
+            const divProducto = document.createElement('div');
+            divProducto.classList.add('h-div-producto');
+
+            const fechaDiv = document.createElement('div');
+            fechaDiv.classList.add('h-fecha');
+            fechaDiv.innerHTML = `<p>Fecha: ${compra.fecha}</p>`;
+            divProducto.appendChild(fechaDiv);
+
+            const productosDiv = document.createElement('div');
+            productosDiv.classList.add('h-compra-productos');
+
+            const productoDiv = document.createElement('div');
+            productoDiv.classList.add('h-compra-producto');
+
+            const tabla = document.createElement('table');
+            tabla.classList.add('h-tabla');
+            
+            const encabezadoTabla = document.createElement('tr');
+            const encabezados = ['Imagen', 'Nombre Producto', 'Cantidad', 'Precio unitario'];
+
+            encabezados.forEach(encabezado => {
+                const th = document.createElement('th');
+                th.textContent = encabezado;
+                encabezadoTabla.appendChild(th);
+            });
+
+            tabla.appendChild(encabezadoTabla);
+            // Aquí dentro del bucle puedes generar las filas de la tabla con los datos de cada compra
+            const productosCompra = compra.productos;
+
+            productosCompra.forEach(producto => {
+                const filaProducto = document.createElement('tr');
+
+                // Crear celdas para cada propiedad del producto y agregarlas a la fila
+                const propiedadesProducto = ['urlImagen', 'nombre', 'cantidad', 'precio'];
+
+                propiedadesProducto.forEach(propiedad => {
+                    const td = document.createElement('td');
+                    // Asignar el valor de la propiedad a la celda
+                    if (propiedad === 'urlImagen') { // Modificado el nombre de la propiedad
+                        const img = document.createElement('img');
+                        img.src = producto[propiedad];
+                        img.alt = 'Imagen del producto';
+                        td.appendChild(img);
+                    } else if (propiedad === 'precio') {
+                        td.textContent = `$${producto[propiedad]}`;
+                    } else {
+                        td.textContent = producto[propiedad];
+                    }
+                    filaProducto.appendChild(td);
+                });
+
+                tabla.appendChild(filaProducto);
+            });
+
+            
+            productoDiv.appendChild(tabla); // Agrega la tabla al contenedor del producto
+            productosDiv.appendChild(productoDiv);
+            divProducto.appendChild(productosDiv);
+            
+
+            const precioDiv = document.createElement('div');
+            precioDiv.classList.add('h-total');
+            precioDiv.innerHTML = `<p>Total compra: $${compra.total}</p>`;
+            divProducto.appendChild(precioDiv);
+
+          
+            
+            const contenedorProductos = document.getElementById('h-productos');
+            contenedorProductos.appendChild(divProducto); // Agrega el producto al contenedor de productos
+        });
+    }
+    
+    });
+
+    
+</script>
 </html>
