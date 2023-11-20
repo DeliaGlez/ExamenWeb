@@ -343,6 +343,74 @@
             actualizarSubtotalYTotal();
         }
 
+
+        const compra = {
+
+            crearCompra: function(fechaActual,usuarioActual,total) {
+                return {
+                    fecha: fechaActual,
+                    productos: usuarioActual.carrito,
+                    total: total
+                };
+            },
+
+            agregarAlHistorial: function(usuarioActual, nuevaCompra) {
+                
+                usuarioActual.historial.push(nuevaCompra);
+                
+
+                // Obtener la lista de usuarios del localStorage
+                const usuariosRegistrados = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+                // Encontrar y actualizar al usuario actual en la lista
+                const index = usuariosRegistrados.findIndex(u => u.correo === usuarioActual.correo);
+                if (index !== -1) {
+                    usuariosRegistrados[index] = usuarioActual;
+                }
+
+                // Guardar la lista actualizada en el localStorage
+                localStorage.setItem('usuarios', JSON.stringify(usuariosRegistrados));
+
+                alert('Compra realizada!');
+
+            }
+
+        };
+        // Seleccionar el botón compra
+        const botonCompra = document.querySelector('.boton-personalizado2');
+
+        // Función a ejecutar cuando se hace clic en el botón
+        function vaciarCarrito() {
+            usuarioActual.carrito = []; // Asignar un array vacío al carrito del usuario
+            productos= [];
+            // Actualizar el usuario actual en el localStorage
+            const index = usuariosRegistrados.findIndex(u => u.correo === usuarioActual.correo);
+            if (index !== -1) {
+                usuariosRegistrados[index] = usuarioActual;
+                localStorage.setItem('usuarios', JSON.stringify(usuariosRegistrados));
+            }
+        }
+
+        function realizarCompra() {
+            refreshDatosLocalStorage();
+            const carritoVacio = usuarioActual.carrito.length === 0; // Verificar si el carrito está vacío
+            if (carritoVacio) {
+                alert('El carrito está vacío. Agrega productos antes de realizar la compra.');
+                return; // Salir de la función si el carrito está vacío
+            }
+
+            const fechaActual = new Date(); 
+            const subtotal = calcularSubtotal();
+            const nuevaCompra = compra.crearCompra(fechaActual, usuarioActual, subtotal);
+
+            compra.agregarAlHistorial(usuarioActual, nuevaCompra);
+            
+            vaciarCarrito(); // Vaciar el carrito después de guardar la compra en el historial
+            location.reload();
+        }
+        // Añadir el event listener al botón para escuchar el clic
+        botonCompra.addEventListener('click', realizarCompra);
+
     </script>
 </body>
 </html>
