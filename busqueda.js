@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
     const producto = {
+
         crearProducto: function(urlImagen, nombre, precio) {
             return {
                 urlImagen: urlImagen,
@@ -43,10 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
             localStorage.setItem('usuarios', JSON.stringify(usuariosRegistrados));
 
             alert('Producto agregado al carrito');
-          
-    
-        },
-       
+        }
         
     };
     

@@ -4,9 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FoxShop</title>
     <link rel="stylesheet" href="ver-producto-style.css">
-    <script src="./sentencias.js"></script>
 </head>
 <body>
+    <script src="./sentencias.js"></script>
     <nav>
         <div class="Buscador">
             <div class="logo">
@@ -74,6 +74,11 @@
                 <div>
                     <label>Electronicos</label>
                 </div>
+                <div>
+                    <a href="./historialCompra.html">
+                        <label>Historial de compra</label>
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
@@ -94,41 +99,41 @@
                     </div>
                     <div class="info-p">
                         
-                            <div class="titulo"><h1>Xiaomi 36103 Audifonos Inalámbircos Redmi Buds 3 Lite</h1></div>
-                            <div class="div-desc"><p id="t-sub">MX $599.00</p> <p id="desc">57% Desc.</p></div>
-                            <div><p>MX $260.00</p></div>
-                            <div class="p-rating">
-                                <b>4</b>
-                                <div>
-                                    <img src="img/orange-star.png" alt="" height="15px">
-                                    <img src="img/orange-star.png" alt="" height="15px">
-                                    <img src="img/orange-star.png" alt="" height="15px">
-                                    <img src="img/orange-star.png" alt="" height="15px">
-                                    <img src="img/orange-star.png" alt="" height="15px">
-                                </div>
-                                <p>(14,907)</p>
+                        <div class="titulo"><h1>Xiaomi 36103 Audifonos Inalámbircos Redmi Buds 3 Lite</h1></div>
+                        <div class="div-desc"><p id="t-sub">MX $599.00</p> <p id="desc">57% Desc.</p></div>
+                        <div><p>MX $260.00</p></div>
+                        <div class="p-rating">
+                            <b>4</b>
+                            <div>
+                                <img src="img/orange-star.png" alt="" height="15px">
+                                <img src="img/orange-star.png" alt="" height="15px">
+                                <img src="img/orange-star.png" alt="" height="15px">
+                                <img src="img/orange-star.png" alt="" height="15px">
+                                <img src="img/orange-star.png" alt="" height="15px">
                             </div>
-                            <div class="div-color">
-                                <p>Color:</p>
-                                <div class="colores">
-                                    <button id="btn-negro"></button>
-                                    <button id="blanco"></button>
-                                    <button id="btn-gris"></button>
-                                    <button id="btn-rosa"></button>
-                                    <button id="btn-azul"></button>
-                                </div>
+                            <p>(14,907)</p>
+                        </div>
+                        <div class="div-color">
+                            <p>Color:</p>
+                            <div class="colores">
+                                <button id="btn-negro"></button>
+                                <button id="blanco"></button>
+                                <button id="btn-gris"></button>
+                                <button id="btn-rosa"></button>
+                                <button id="btn-azul"></button>
                             </div>
-                            <div class="cantidad">
-                                <p>Cantidad</p>
-                                <div id="cant">
-                                    <button>-</button>
-                                    <p>1</p>
-                                    <button>+</button>
-                                </div>
+                        </div>
+                        <div class="cantidad">
+                            <p>Cantidad</p>
+                            <div id="cant">
+                                <button onclick="decrementar()">-</button>
+                                <p id="cantidad">1</p>
+                                <button onclick="incrementar()">+</button>
                             </div>
-                            <div class="div-botones">
-                                <button type= "submit" id = "CASCOSNEGROS"><img src="img/add.png" alt="" height="20px">Añadir al carrito</button>
-                            </div>
+                        </div>
+                        <div class="div-botones">
+                            <button type= "submit" id = "CASCOSNEGROS"><img src="img/add.png" alt="" height="20px">Añadir al carrito</button>
+                        </div>
                             
                             
                     </div>
@@ -314,28 +319,36 @@
                 return {
                     urlImagen: urlImagen,
                     nombre: nombre,
-                    precio: precio
+                    precio: precio,
+                    cantidad: 1
                 };
             },
         
-            agregarAlCarrito: function(usuarioActual, producto) {
-                usuarioActual.carrito.push(producto);
-        
-               // Obtener la lista de usuarios del localStorage
+            agregarAlCarrito: function(usuarioActual, nuevoProducto, cantidad) {
+                const productoEnCarrito = usuarioActual.carrito.find(producto => producto.nombre === nuevoProducto.nombre);
+
+                if (productoEnCarrito) {
+                    // Si el producto ya está en el carrito, sumar la cantidad seleccionada
+                    productoEnCarrito.cantidad += cantidad;
+                } else {
+                    // Si no está en el carrito, agregar el nuevo producto con la cantidad seleccionada
+                    nuevoProducto.cantidad = cantidad;
+                    usuarioActual.carrito.push(nuevoProducto);
+                }
+
+                // Obtener la lista de usuarios del localStorage
                 const usuariosRegistrados = JSON.parse(localStorage.getItem('usuarios')) || [];
-    
+
                 // Encontrar y actualizar al usuario actual en la lista
                 const index = usuariosRegistrados.findIndex(u => u.correo === usuarioActual.correo);
                 if (index !== -1) {
                     usuariosRegistrados[index] = usuarioActual;
                 }
-    
+
                 // Guardar la lista actualizada en el localStorage
                 localStorage.setItem('usuarios', JSON.stringify(usuariosRegistrados));
-    
+
                 alert('Producto agregado al carrito');
-              
-        
             }
         };
         
@@ -346,12 +359,35 @@
             const nombreProducto = "Xiaomi 36103 Audifonos Inalámbircos Redmi Buds 3 Lite";
             const precio = 260.00;
         
-            //funcion crear producto
-            const redMi = producto.crearProducto(urlImagen,nombreProducto,precio);
-            //funcion agregar al carrito
-          
-            producto.agregarAlCarrito(usuarioActual, redMi);
+            // Obtener la cantidad seleccionada del HTML
+            const cantidadSeleccionada = parseInt(document.getElementById('cantidad').textContent);
+
+            // Crear el producto
+            const redMi = producto.crearProducto(urlImagen, nombreProducto, precio);
+
+            // Agregar al carrito teniendo en cuenta la cantidad seleccionada
+            producto.agregarAlCarrito(usuarioActual, redMi, cantidadSeleccionada);
         })
     });
+
+    // Obtener el elemento de la cantidad
+    var cantidadElemento = document.getElementById("cantidad");
+
+    // Función para decrementar la cantidad
+    function decrementar() {
+        var cantidad = parseInt(cantidadElemento.textContent);
+        if (cantidad > 1) {
+            cantidad--;
+            cantidadElemento.textContent = cantidad;
+        }
+    }
+
+    // Función para incrementar la cantidad
+    function incrementar() {
+        var cantidad = parseInt(cantidadElemento.textContent);
+        cantidad++;
+        cantidadElemento.textContent = cantidad;
+    }
+
 </script>
 </html>
