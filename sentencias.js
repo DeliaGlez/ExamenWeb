@@ -70,7 +70,7 @@ function iniciarSesion() {
     if (usuarioValido) {
         // El usuario y la contraseña son correctos, guarda el nombre del usuario en el localStorage
         localStorage.setItem('nombreUsuario', usuarioValido.nombre);
-
+        localStorage.setItem('correo',usuarioValido.correo);
         // Redirige a la página de inicio de sesión iniciada
         window.location.href = './InicioSesionIniciada.html';
     } else {
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Actualizar el nombre de usuario en el Local Storage
             localStorage.setItem('nombreUsuario', usuariosRegistrados[indexUsuario].nombre);
-
+            
             // Redirigir a la página de inicio de sesión iniciada o hacer otras acciones necesarias
             window.location.href = './InicioSesionIniciada.html';
         } else {

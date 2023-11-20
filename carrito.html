@@ -244,14 +244,7 @@
 
 
         document.addEventListener('DOMContentLoaded', function () {
-            // Obtener el array de productos del Local Storage
-            const productosEnLocalStorage = JSON.parse(localStorage.getItem('usuarios'))[0].carrito;
-
-            // Asignar los productos al array productos
-            productos.length = 0;
-            productosEnLocalStorage.forEach(producto => {
-                productos.push(producto);
-            });
+            refreshDatosLocalStorage();
 
             mostrarProductos();
             actualizarSubtotalYTotal();
