@@ -82,7 +82,7 @@
             <div class="contenido">
                 
                 <div class="tucarrito">
-                    <h1>Tu carrito ( 3 )</h1>
+                    <h1>Tu carrito</h1>
                 </div>
 
                 <div class="contenedorPro">
@@ -91,38 +91,14 @@
                         <div class="txtos">
                             <h2 class="first">Producto</h2>
                             <h2 class="second">Cantidad</h2>
-                            <h2 class="second">Precio</h2>
+                            <h2 class="second">Precio U.</h2>
                         </div>
-
-                        <div class="producto">
-                            <img src="imagenes/grafica.png" style="width:10%; vertical-align: middle; margin-right: 4vh; margin-left:7px;">
-                            <a class="desc">Gigabyte GeForce RTX 3060 Ti Eagle Tarjeta gráfica 8 GB 256 bits GDDR6X, Tarjeta de Video</a>
-                            <button class="cantidad">-</button>
-                            <p>1</p>
-                            <button class="cantidadmas">+</button>
-                            <h1>$10,350</h1>
-                            <h1>X</h1>
+                        <div id="contenedorProductos">
+                            
+    
                         </div>
-
-                        <div class="producto">
-                            <img src="imagenes/gabinete.png" style="width:8%; vertical-align: middle; margin-right: 8vh;">
-                            <a class="desc">YEYIAN Gabinete Gamer Haizen 2500 ITX, Mini ATX, Micro ATX, USB 3.0, 3 ARGB 120MM</a>
-                            <button class="cantidad">-</button>
-                            <p>1</p>
-                            <button class="cantidadmas">+</button>
-                            <h1 class="h1edit">$1,200</h1>
-                            <h1>X</h1>
-                        </div>
-
-                        <div class="producto">
-                            <img src="imagenes/monitor.png" style="width:10%; vertical-align: middle; margin-right: 5vh;">
-                            <a class="desc">Acer KC242Y Hbi 23.8 Pulgadas Full HD (1920 x 1080) Monitor de Oficina para Juegos de Marco Cero | 100Hz | Inclinación | Puertos HDMI y VGA</a>
-                            <button class="cantidad">-</button>
-                            <p>1</p>
-                            <button class="cantidadmas">+</button>
-                            <h1 class="h1edit">$1,970</h1>
-                            <h1>X</h1>
-                        </div>
+                        
+                        
 
                         <div class="producto" style="border-top: 4px solid #312F48; gap: 40%">
 
@@ -134,12 +110,12 @@
                             </div> 
         
                             <div style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 2fr 2fr; border-bottom: 4px solid #312F48;">
-                                <a>Subtotal:</a>
-                                <p>$13,520</p>
+                                <a >Subtotal:</a>
+                                <p id="subtotal">$0.00</p>
                                 <a style="border-bottom: 4px solid #312F48; width:40%;">Envío:</a>
                                 <p style=" border-bottom: 4px solid #312F48;">Gratis</p>
                                 <p>Total:</p>
-                                <p>$13,520.00</p>
+                                <p id="total">$0.00</p>
                             </div>
                             
                         </div>
@@ -206,14 +182,64 @@
         </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Obtener el nombre de usuario del Local Storage
-            const nombreUsuario = localStorage.getItem('nombreUsuario');
+       // Obtener el nombre de usuario del Local Storage
+        const nombreUsuario = localStorage.getItem('nombreUsuario');
 
-            // Asignar el nombre de usuario al label
-            const labelNombreUsuario = document.getElementById('nombreUsuario');
-            labelNombreUsuario.textContent = nombreUsuario;
+        // Asignar el nombre de usuario al label
+        const labelNombreUsuario = document.getElementById('nombreUsuario');
+        labelNombreUsuario.textContent = nombreUsuario;
+
+        const usuariosRegistrados = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+        const usuarioActual = usuariosRegistrados.find(usuario => usuario.correo === localStorage.getItem('correo'));
+
+        const productos = usuarioActual.carrito;
+
+        function mostrarProductos() {
+            const contenedor = document.getElementById('contenedorProductos');
+
+            productos.forEach(producto => {
+                const divProducto = document.createElement('div');
+                divProducto.classList.add('producto');
+
+                divProducto.innerHTML = `
+                    <img src="${producto.urlImagen}" style="width:10%; vertical-align: middle; margin-right: 4vh; margin-left:7px;">
+                    <a class="desc">${producto.nombre}</a>
+                    <button class="cantidad">-</button>
+                    <p>${producto.cantidad}</p>
+                    <button class="cantidadmas">+</button>
+                    <h1>$${producto.precio}</h1>
+                    <button class="bnt-delete">X</button>
+                `;
+
+                contenedor.appendChild(divProducto);
+            });
+        }
+
+        function calcularSubtotal() {
+            let subtotal = 0;
+
+            productos.forEach(producto => {
+                const precioTotalProducto = producto.precio * producto.cantidad;
+                subtotal += precioTotalProducto;
+            });
+
+            return subtotal;
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            mostrarProductos();
+            
+            //actualizar el subtotal y total
+            const subtotalElement = document.getElementById('subtotal');
+            const subtotal = calcularSubtotal();
+            subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+            const totalElement = document.getElementById('total');
+
+            totalElement.textContent = `$${subtotal.toFixed(2)}`;
         });
+
     </script>
 </body>
 </html>
