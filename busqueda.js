@@ -17,18 +17,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 urlImagen: urlImagen,
                 nombre: nombre,
                 precio: precio,
-                //cantidad: cantidad
+                cantidad: 1
             };
         },
     
-        agregarAlCarrito: function(usuarioActual, producto) {
-            usuarioActual.carrito.push(producto);
-
-            
+        agregarAlCarrito: function(usuarioActual, nuevoProducto) {
+            const productoEnCarrito = usuarioActual.carrito.find(producto => producto.nombre === nuevoProducto.nombre);
     
-           // Obtener la lista de usuarios del localStorage
+            if (productoEnCarrito) {
+                productoEnCarrito.cantidad += 1;
+            } else {
+                usuarioActual.carrito.push(nuevoProducto);
+            }
+    
+            // Obtener la lista de usuarios del localStorage
             const usuariosRegistrados = JSON.parse(localStorage.getItem('usuarios')) || [];
-
+    
             // Encontrar y actualizar al usuario actual en la lista
             const index = usuariosRegistrados.findIndex(u => u.correo === usuarioActual.correo);
             if (index !== -1) {
@@ -41,7 +45,9 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Producto agregado al carrito');
           
     
-        }
+        },
+       
+        
     };
     
     //FUNCIONALIDAD AGREGAR CARRITO
@@ -54,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
         //funcion crear producto
         const cascosNegros = producto.crearProducto(urlImagen,nombreProducto,precio);
         //funcion agregar al carrito
-      
+        
         producto.agregarAlCarrito(usuarioActual, cascosNegros);
     })
 
