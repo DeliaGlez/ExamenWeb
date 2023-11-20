@@ -192,11 +192,18 @@
         const labelNombreUsuario = document.getElementById('nombreUsuario');
         labelNombreUsuario.textContent = nombreUsuario;
 
-        const usuariosRegistrados = JSON.parse(localStorage.getItem('usuarios')) || [];
+        var usuariosRegistrados = JSON.parse(localStorage.getItem('usuarios')) || [];
 
-        const usuarioActual = usuariosRegistrados.find(usuario => usuario.correo === localStorage.getItem('correo'));
+        var usuarioActual = usuariosRegistrados.find(usuario => usuario.correo === localStorage.getItem('correo'));
+        
+       
+        var productos = usuarioActual.carrito;
 
-        const productos = usuarioActual.carrito;
+        function refreshDatosLocalStorage(){
+            usuariosRegistrados = JSON.parse(localStorage.getItem('usuarios')) || [];
+            usuarioActual= usuariosRegistrados.find(usuario => usuario.correo === localStorage.getItem('correo'));
+            productos = usuarioActual.carrito;
+        }
 
         function mostrarProductos() {
 
@@ -223,6 +230,8 @@
         }
 
         function calcularSubtotal() {
+            refreshDatosLocalStorage();
+            
             let subtotal = 0;
 
             productos.forEach(producto => {
