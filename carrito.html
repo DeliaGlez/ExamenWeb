@@ -400,8 +400,17 @@
             }
 
             const fechaActual = new Date(); 
+         
+            // Obtener día, mes y año
+            const dia = fechaActual.getDate().toString().padStart(2, '0'); // Agrega un 0 si el día es de un solo dígito
+            const mes = (fechaActual.getMonth() + 1).toString().padStart(2, '0'); // Los meses van de 0 a 11
+            const año = fechaActual.getFullYear();
+
+            // Formatear la fecha en dd/mm/aaaa
+            const fechaFormateada = `${dia}/${mes}/${año}`;
+
             const subtotal = calcularSubtotal();
-            const nuevaCompra = compra.crearCompra(fechaActual, usuarioActual, subtotal);
+            const nuevaCompra = compra.crearCompra( fechaFormateada , usuarioActual, subtotal);
 
             compra.agregarAlHistorial(usuarioActual, nuevaCompra);
             
